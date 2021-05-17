@@ -1,0 +1,7 @@
+base   authcorebos
+author Joe Bordes
+email  joe@tsolucio.com
+date   2021-04-28
+name   authcorebos plugin
+desc   Authenticate using coreBOS users
+url    https://github.com/coreBOS/dokuwikilogin
