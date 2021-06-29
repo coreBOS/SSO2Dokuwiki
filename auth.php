@@ -58,8 +58,8 @@ class auth_plugin_authcorebos extends auth_plugin_authplain
             $login = $cbconn->doLogin($user, $password, true);
             if ($login) {
                 $uinfo = $cbconn->doInvoke('getPortalUserInfo', array(), 'POST');
-                $this->ufirstname = $uinfo['first_name'];
-                $this->ulastname = $uinfo['last_name'];
+                $this->ufirstname = html_entity_decode($uinfo['first_name'], ENT_QUOTES, 'UTF8');
+                $this->ulastname = html_entity_decode($uinfo['last_name'], ENT_QUOTES, 'UTF8');
                 $this->ufullname = $this->ufirstname.' '.$this->ulastname;
                 $this->uemail = $uinfo['email1'];
                 $cbconn->doLogout();
