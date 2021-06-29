@@ -96,18 +96,18 @@ class auth_plugin_authcorebos extends auth_plugin_authplain
                 // we ask coreBOS, in case they have changed their password and are giving us the new one
                 if ($this->cbLogin($prefix, $user, $pass)) {
                     // coreBOS says it is ok, so we update password and authorize
-                    $_REQUEST['u'] = $prefix.$user;
-                    $user = $prefix.$user;
+                    $_REQUEST['u'] = $prefix.'@'.$user;
+                    $user = $prefix.'@'.$user;
                     $this->modifyUser($user, array('pass'=>$pass));
                     return true;
                 }
             }
         }
         if (!empty($prefix)) {
-            $userinfo = $this->getUserData($prefix.$user);
+            $userinfo = $this->getUserData($prefix.'@'.$user);
             if ($userinfo) {
                 $usernoprefix = $user;
-                $user = $prefix.$user;
+                $user = $prefix.'@'.$user;
                 $_REQUEST['u'] = $user;
                 // if found with corebos install prefix > we authenticate locally
                 if (in_array('admin', $userinfo['grps'])) {
@@ -130,7 +130,7 @@ class auth_plugin_authcorebos extends auth_plugin_authplain
         // not found so we try to authenticate with coreBOS
         if ($this->cbLogin($prefix, $user, $pass)) {
             // coreBOS says it is ok, so we create locally and authorize
-            $user = $prefix.$user;
+            $user = $prefix.'@'.$user;
             $_REQUEST['u'] = $user;
             $this->createUser($user, $pass, $this->ufullname, $this->uemail, $this->getConf('newuserrole'));
             return true;
