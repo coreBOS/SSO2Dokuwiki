@@ -43,7 +43,7 @@ class action_plugin_authcorebos extends DokuWiki_Action_Plugin
     {
         $cbinstalls = array();
         $numinstalls = $this->getConf('corebosinstalls');
-        for ($i = 1; $i < $numinstalls; $i++) {
+        for ($i = 1; $i <= $numinstalls; $i++) {
             $pad = str_pad($i, 2, '0', STR_PAD_LEFT);
             $cbname = $this->getConf('corebosname'.$pad);
             $cburl = $this->getConf('corebosurl'.$pad);
