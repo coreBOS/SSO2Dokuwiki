@@ -69,6 +69,12 @@ class auth_plugin_authcorebos extends auth_plugin_authplain
         return false;
     }
 
+    public function cleanUser($user)
+    {
+        global $conf;
+        return str_replace(':', $conf['sepchar'], $user);
+    }
+
     /**
      * Check user+password
      *
